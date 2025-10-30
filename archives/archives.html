@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorateur d'Archives GitHub Pages</title>
+    <style>
+        /* --- Styles CSS pour l'apparence --- */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2e3440; /* Couleur sombre */
+            color: #d8dee9;
+            padding: 20px;
+        }
+
+        #file-explorer {
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #4c566a;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #3b4252;
+        }
+
+        /* Styles de la liste */
+        .file-list {
+            list-style: none;
+            padding-left: 15px;
+        }
+
+        .file-list li {
+            margin: 4px 0;
+            cursor: pointer;
+            padding: 2px 0;
+        }
+
+        .folder-name {
+            font-weight: bold;
+            color: #88c0d0; /* Couleur pour les dossiers */
+            display: flex;
+            align-items: center;
+        }
+
+        .file-name {
+            color: #a3be8c; /* Couleur pour les fichiers */
+            margin-left: 20px;
+        }
+        
+        /* Icônes */
+        .icon {
+            margin-right: 5px;
+        }
+        .folder-toggle {
+            display: inline-block;
+            width: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #eceff4;
+            user-select: none; /* Empêche la sélection du texte */
+        }
+
+        .closed > .folder-content {
+            display: none; /* Cache le contenu quand le dossier est fermé */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Explorateur de Fichiers d'Archives 📁</h1>
+    
+    <div id="file-explorer">
+        <p>Chargement de l'arborescence des fichiers...</p>
+    </div>
+
+    <script>
+        // Le nom du fichier JSON généré par votre script Python/Node.js
+        const OUTPUT_FILE = 'structure.json'; 
+        
+        // L'URL de base de votre site GitHub Pages
+        const BASE_URL = 'https://wolfyd3v.github.io/The-Sim-Board-s-Collection---Website/';
+
+        /* --- Fonctions JavaScript pour générer l'explorateur --- */
+
+        // Fonction récursive pour générer l'HTML à partir de la structure
+        function generateExplorerHTML(items) {
+            let html = '<ul class="file-list">';
+            items.forEach(item => {
+                const isFolder = item.type === 'folder';
+                const icon = isFolder ? '📂' : '📄';
+
+                if (isFolder) {
+                    // Pour les dossiers
+                    html += `<li class="folder closed" data-name="${item.name}">`;
+                    html += `<span class="folder-name">`;
+                    html += `<span class="folder-toggle">►</span>`; // Bouton à bascule
+                    html += `<span class="icon">${icon}</span> ${item.name}`;
+                    html += `</span>`;
+                    html += `<div class="folder-content">`;
+                    // Appel récursif pour les sous-dossiers/fichiers
+                    html += generateExplorerHTML(item.children); 
+                    html += `</div>`;
+                    html += `</li>`;
+                } else {
+                    // Pour les fichiers
+                    const fileUrl = BASE_URL + item.path; 
+
+                    html += `<li>`;
+                    html += `<a href="${fileUrl}" target="_blank" class="file-name">`;
+                    html += `<span class="icon">${icon}</span> ${item.name}`;
+                    html += `</a>`;
+                    html += `</li>`;
+                }
+            });
+            html += '</ul>';
+            return html;
+        }
+
+        // Fonction pour gérer le clic et ouvrir/fermer les dossiers
+        function setupToggle() {
+            const folders = document.querySelectorAll('.folder');
+            folders.forEach(folder => {
+                const toggle = folder.querySelector('.folder-toggle');
+                const nameSpan = folder.querySelector('.folder-name');
+
+                // On attache l'événement au nom du dossier pour que ce soit plus facile de cliquer
+                nameSpan.addEventListener('click', (e) => {
+                    if (e.target !== toggle && e.target !== nameSpan) return; 
+                    
+                    folder.classList.toggle('closed');
+                    toggle.textContent = folder.classList.contains('closed') ? '►' : '▼';
+                });
+            });
+        }
+
+        // Point de départ de l'exécution : Chargement du fichier JSON
+        document.addEventListener('DOMContentLoaded', () => {
+            const explorerContainer = document.getElementById('file-explorer');
+            
+            // --- NOUVEAU : Chargement du fichier JSON depuis le serveur ---
+            fetch(OUTPUT_FILE)
+                .then(response => {
+                    // Vérifie si la requête a réussi (statut HTTP 200)
+                    if (!response.ok) {
+                        throw new Error(`Erreur HTTP : Le fichier '${OUTPUT_FILE}' est introuvable ou n'est pas accessible. (Statut: ${response.status})`);
+                    }
+                    return response.json();
+                })
+                .then(fileStructure => {
+                    // 1. Générer l'HTML une fois que les données sont chargées
+                    explorerContainer.innerHTML = generateExplorerHTML(fileStructure);
+
+                    // 2. Attacher les événements (clics)
+                    setupToggle();
+                })
+                .catch(error => {
+                    // Afficher l'erreur si le fichier JSON n'est pas lu
+                    explorerContainer.innerHTML = `<p style="color: #bf616a;">🛑 Erreur : ${error.message}<br>Vérifiez que le fichier **${OUTPUT_FILE}** a bien été généré et commité à la racine de votre dépôt.</p>`;
+                    console.error('Erreur lors du chargement de la structure des fichiers:', error);
+                });
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>The Sim Board's Collection - WEBSITE [DEVELOPMENT ROADMAP]</title>
+</head>
+<body>
+	<header>
+		<h1>The Sim Board's Collection</h1>
+		<nav class="header-navigation-menu">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="archives.html" target="_blank">Archives</a></li>
+				<li><a href="roadmap.html">Roadmap</a></li>
+				<li><a href="narratives.html">Narratives</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<div class="narratives-main-area">
+		<div class="narratives-left-panel">
+			<h2><u>NARRATIVES:</u></h2>
+			<ul>
+				<li onclick="showCorrectRightPanel('cookies-narrative');"><a>Cookies</a></li>
+				<ul>
+					<li onclick="showCorrectRightPanel('meteorite-clicker');"><a>Meteorite Clicker</a></li>
+					<li onclick="showCorrectRightPanel('launch-missile-qte');"><a>Launch the missile QTE</a></li>
+				</ul>
+			</ul>
+		</div>
+			
+		<div class="narratives-right-panel">
+			<div id="cookies-narrative">
+				<h2><strong><u>Cookies:</u></strong></h2>
+				<h2>In the Cookivers, the Cookiearth is in Grand danger.<br>A big meteorite will destroy it. But with the courage and the help of 5 heros the day will be saved.</h2>
+				<h2>Tension and happy ending, that's the spirit of this NARRATIVE...</h2>
+			</div>
+			<div id="meteorite-clicker">
+				<h2><strong><u>Meteorite Clicker:</u></strong></h2>
+				<h2>It's a mini-game where click on a meteorite mine it, and allow to buy upgrades to mine more and more meteorites.</h2>
+			</div>
+			<div id="launch-missile-qte">
+				<h2><strong><u>Launch the missile QTE:</u></strong></h2>
+				<h2>A classic QTE.</h2>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<h2><u>Website:</u> <a href="https://wolfyd3v.github.io/WolfY_CorpCompanyWebsite/" target="_blank">WolfY_CorpCompanyWebsite</a></h2>
+		<p>&copy; 2025 - WolfY_Corp</p>
+	</footer>
+</body>
+</html>
+
+<script>
+	var rightPanelsList = [
+		document.getElementById("cookies-narrative"),
+		document.getElementById("meteorite-clicker"),
+		document.getElementById("launch-missile-qte")
+	];
+	
+	function hideAllRightPanels() {
+		rightPanelsList.forEach((panel) => {
+			panel.style.display = "none";
+		});
+	};
+	
+	hideAllRightPanels();
+	
+	function showCorrectRightPanel(rightPanelId) {
+		hideAllRightPanels();
+		var p = document.getElementById(rightPanelId);
+		p.style.display = "block";
+		console.log(rightPanelId);
+	};
+	
+	showCorrectRightPanel('meteorite-clicker');
+</script>

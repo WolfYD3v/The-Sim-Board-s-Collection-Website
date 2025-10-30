@@ -1,0 +1,55 @@
+[
+  {
+    "name": "058",
+    "type": "folder",
+    "children": [
+      {
+        "name": "text",
+        "type": "folder",
+        "children": [
+          {
+            "name": "INFO.txt",
+            "type": "file",
+            "path": "archives/058/text/INFO.txt"
+          },
+          {
+            "name": "Rudolf Hitler Dairy.txt",
+            "type": "file",
+            "path": "archives/058/text/Rudolf Hitler Dairy.txt"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "501",
+    "type": "folder",
+    "children": [
+      {
+        "name": "ALERT.txt",
+        "type": "file",
+        "path": "archives/501/ALERT.txt"
+      }
+    ]
+  },
+  {
+    "name": "INFO.txt",
+    "type": "file",
+    "path": "archives/INFO.txt"
+  },
+  {
+    "name": "README.md",
+    "type": "file",
+    "path": "archives/README.md"
+  },
+  {
+    "name": "README.txt",
+    "type": "file",
+    "path": "archives/README.txt"
+  },
+  {
+    "name": "token",
+    "type": "file",
+    "path": "archives/token"
+  }
+]

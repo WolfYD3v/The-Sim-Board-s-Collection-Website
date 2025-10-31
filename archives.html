@@ -1,56 +1,76 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Sim Board's Collection - WEBSITE [ARCHIVES]</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<title>The Sim Board's Collection - WEBSITE [ARCHIVES]</title>
 </head>
 <body>
-    <div id="file-explorer">
-        <p>Chargement de l'arborescence des fichiers...</p>
-    </div>
+	<header>
+		<h1>The Sim Board's Collection</h1>
+		<nav class="header-navigation-menu">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="archives.html">Archives</a></li>
+				<li><a href="roadmap.html">Roadmap</a></li>
+				<li><a href="narratives.html">Narratives</a></li>
+			</ul>
+		</nav>
+	</header>
+		
+	<main>
+		<div id="file-explorer">
+			<p>Chargement de l'arborescence des fichiers...</p>
+		</div>
+	</main>
 
-    <script>
-        // Le nom du fichier JSON généré par votre script Python/Node.js
-        const OUTPUT_FILE = 'structure.json'; 
+	<footer>
+		<h2><u>Website:</u> <a href="https://wolfyd3v.github.io/WolfY_CorpCompanyWebsite/" target="_blank">WolfY_CorpCompanyWebsite</a></h2>
+		<p>&copy; 2025 - WolfY_Corp</p>
+	</footer>
+
+        <script>
+        	// Le nom du fichier JSON généré par votre script Python/Node.js
+        	const OUTPUT_FILE = 'structure.json'; 
         
-        // L'URL de base de votre site GitHub Pages
-        const BASE_URL = 'https://wolfyd3v.github.io/The-Sim-Board-s-Collection-Website/';
+        	// L'URL de base de votre site GitHub Pages
+        	const BASE_URL = 'https://wolfyd3v.github.io/The-Sim-Board-s-Collection-Website/';
 
-        /* --- Fonctions JavaScript pour générer l'explorateur --- */
+        	/* --- Fonctions JavaScript pour générer l'explorateur --- */
 
-        // Fonction récursive pour générer l'HTML à partir de la structure
-        function generateExplorerHTML(items) {
-            let html = '<ul class="file-list">';
-            items.forEach(item => {
-                const isFolder = item.type === 'folder';
-                const icon = isFolder ? '📂' : '📄';
+        	// Fonction récursive pour générer l'HTML à partir de la structure
+        	function generateExplorerHTML(items) {
+           		let html = '<ul class="file-list">';
+            		items.forEach(item => {
+                	const isFolder = item.type === 'folder';
+                	const icon = isFolder ? '' : '';
 
-                if (isFolder) {
-                    // Pour les dossiers
-                    html += `<li class="folder closed" data-name="${item.name}">`;
-                    html += `<span class="folder-name">`;
-                    html += `<span class="folder-toggle">►</span>`; // Bouton à bascule
-                    html += `<span class="icon">${icon}</span> ${item.name}`;
-                    html += `</span>`;
-                    html += `<div class="folder-content">`;
-                    // Appel récursif pour les sous-dossiers/fichiers
-                    html += generateExplorerHTML(item.children); 
-                    html += `</div>`;
-                    html += `</li>`;
-                } else {
-                    // Pour les fichiers
-                    const fileUrl = BASE_URL + item.path; 
+                	if (isFolder) {
+                    		// Pour les dossiers
+                   		html += `<li class="folder closed" data-name="${item.name}">`;
+                    		html += `<span class="folder-name">`;
+                    		html += `<span class="folder-toggle">►</span>`; // Bouton à bascule
+                    		html += `<span class="icon">${icon}</span> ${item.name}`;
+                    		html += `</span>`;
+                    		html += `<div class="folder-content">`;
+                    		// Appel récursif pour les sous-dossiers/fichiers
+                    		html += generateExplorerHTML(item.children); 
+                    		html += `</div>`;
+                    		html += `</li>`;
+                	} else {
+                    		// Pour les fichiers
+                   		const fileUrl = BASE_URL + item.path; 
 
-                    html += `<li>`;
-                    html += `<a href="${fileUrl}" target="_blank" class="file-name">`;
-                    html += `<span class="icon">${icon}</span> ${item.name}`;
-                    html += `</a>`;
-                    html += `</li>`;
-                }
-            });
-            html += '</ul>';
-            return html;
+                   		html += `<li>`;
+                    		html += `<a href="${fileUrl}" target="_blank" class="file-name">`;
+                    		html += `<span class="icon">${icon}</span> ${item.name}`;
+                    		html += `</a>`;
+                    		html += `</li>`;
+                	}
+            	});
+            	html += '</ul>';
+            	return html;
         }
 
         // Fonction pour gérer le clic et ouvrir/fermer les dossiers
@@ -93,6 +113,7 @@
                 .catch(error => {
                     // Afficher l'erreur si le fichier JSON n'est pas lu
                     explorerContainer.innerHTML = `<p>Error : ${error.message}</p>`;
+	            document.location.href="archives/";
                 });
         });
 

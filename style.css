@@ -73,7 +73,7 @@ a:hover {
 .narratives-main-area {
 	width: 100%;
 	display: grid;
-	grid-template-columns: 1fr 2.5fr;  /* deux colonnes égales */
+	grid-template-columns: 1fr 2.5fr;
 	gap: 0.5rem;
 }
 .narratives-left-panel {
@@ -82,6 +82,10 @@ a:hover {
 	border-radius: 0.5rem;
         margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
+	height: auto;
+}
+.narratives-left-panel li, .narratives-left-panel lu {
+	list-style: none;
 }
 .narratives-right-panel {
 	border: 0.1rem solid #333;
@@ -91,6 +95,52 @@ a:hover {
 	margin-bottom: 0.5rem;
 }
 
+video {
+	border: 0.1rem solid #333;
+	width: 20rem;
+	border-radius: 0.5rem;
+}
+
+.alert {
+	border: 0.1rem solid #333;
+	border-radius: 0.5rem;
+	background-color: red;
+	width: 100%;
+	height: auto;
+}
+.alert h1 {
+	color: white !important;
+}
+.alert h2 {
+	color: white !important;
+}
+
+.roadmap-section {
+	border: 0.1rem solid #333;
+	border-radius: 0.5rem;
+	background-color: #333;
+	color: white;
+	width: 100%;
+	height: auto;
+	transform: scale(0.9);
+	margin-bottom: 0.5rem;
+}
+.roadmap-section:hover {
+	transform: scale(0.92);
+}
+.roadmap-section-active {
+	border: 0.1rem solid #333;
+	border-radius: 0.5rem;
+	background-color: #333;
+	color: white;
+	width: 100%;
+	height: auto;
+	transform: scale(1.0);
+	margin-bottom: 0.5rem;
+}
+.roadmap-section-active:hover {
+	transform: scale(1.02);
+}
 
 @media (max-width: 750px) {
 	html {
@@ -101,5 +151,8 @@ a:hover {
 	}
 	.header-navigation-menu li {
 		font-size: 1.5rem; 
+	}
+	video {
+		width: 15rem;
 	}
 }

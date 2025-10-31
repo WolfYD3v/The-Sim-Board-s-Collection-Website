@@ -12,7 +12,7 @@
 		<nav class="header-navigation-menu">
 			<ul>
 				<li><a href="index.html">Home</a></li>
-				<li><a href="archives.html" target="_blank">Archives</a></li>
+				<li><a href="archives.html">Archives</a></li>
 				<li><a href="roadmap.html">Roadmap</a></li>
 				<li><a href="narratives.html">Narratives</a></li>
 			</ul>
@@ -23,27 +23,58 @@
 		<div class="narratives-left-panel">
 			<h2><u>NARRATIVES:</u></h2>
 			<ul>
-				<li onclick="showCorrectRightPanel('cookies-narrative');"><a>Cookies</a></li>
+				<li onclick="showCorrectRightPanel('cookies-narrative');"><a>Cookies NARRATIVE</a></li>
 				<ul>
-					<li onclick="showCorrectRightPanel('meteorite-clicker');"><a>Meteorite Clicker</a></li>
-					<li onclick="showCorrectRightPanel('launch-missile-qte');"><a>Launch the missile QTE</a></li>
+					<li onclick="showCorrectRightPanel('cookivers');"><a>Cookivers</a></li>
+					<li onclick="showCorrectRightPanel('cookiearth');"><a>Cookiearth</a></li>
+					<li onclick="showCorrectRightPanel('big-meteorite-cookies-narrative');"><a>Meteorite</a></li>
+					<li onclick="showCorrectRightPanel('casc');"><a>CASC</a></li>
+					<li onclick="showCorrectRightPanel('big-5-cookies-narrative');"><a>Big 5</a></li>
 				</ul>
 			</ul>
 		</div>
 			
 		<div class="narratives-right-panel">
+			
 			<div id="cookies-narrative">
-				<h2><strong><u>Cookies:</u></strong></h2>
-				<h2>In the Cookivers, the Cookiearth is in Grand danger.<br>A big meteorite will destroy it. But with the courage and the help of 5 heros the day will be saved.</h2>
-				<h2>Tension and happy ending, that's the spirit of this NARRATIVE...</h2>
+				<h2><strong><u>Cookies NARRATIVE:</u></strong></h2>
+				<h2>[<u>Server number:</u> 058]</h2>
+				<h2>In the <a onclick="showCorrectRightPanel('cookivers');">Cookivers</a>, the <a onclick="showCorrectRightPanel('cookiearth');">Cookiearth</a> is in Grand danger.<br>A <a onclick="showCorrectRightPanel('big-meteorite-cookies-narrative');">meteorite</a> will crash on the planet, which will destroy it and kill all the cookies.</h2>
+				<h2>While the polulation is unawre of this incoming danger, at the <a onclick="showCorrectRightPanel('casc');">CASC</a> the story is different.<br>While the employees are panicking, the highters up has send the <a onclick="showCorrectRightPanel('big-5-cookies-narrative');">Big 5</a> to save the day.</h2>
 			</div>
-			<div id="meteorite-clicker">
-				<h2><strong><u>Meteorite Clicker:</u></strong></h2>
-				<h2>It's a mini-game where click on a meteorite mine it, and allow to buy upgrades to mine more and more meteorites.</h2>
+			
+			<div id="cookivers">
+				<h2><strong><u>Cookivers:</u></strong></h2>
+				<h2>The univers where the <a onclick="showCorrectRightPanel('cookiearth');">Cookiearth</a> is.</h2>
+				<h2>Who knows what is hidden beyond this planet, far, far away...</h2>
 			</div>
-			<div id="launch-missile-qte">
-				<h2><strong><u>Launch the missile QTE:</u></strong></h2>
-				<h2>A classic QTE.</h2>
+			
+			<div id="cookiearth">
+				<h2><strong><u>Cookiearth:</u></strong></h2>
+				<h2>The planet where all the living cookies lives.<br>It's a quiet place, not too warn, not too cold. Ideal for cookies to born, grow and to live a life without pressure.</h2>
+				<h2>This planet is the only where live can occure, lost inside a deap, cold and dark space sky.</h2>
+			</div>
+			
+			<div id="big-meteorite-cookies-narrative">
+				<h2><strong><u>Meteorite:</u></strong></h2>
+				<h2>A big and hot meteorite will crash of the <a onclick="showCorrectRightPanel('cookiearth');">Cookiearth</a>.<br>It has a size equal as the one of his target, and heat is so high it can overcook all the cookies to death.</h2>
+			</div>
+			
+			<div id="casc">
+				<h2><strong><u>CASC:</u></strong></h2>
+				<h2>The C... A... S... C... (CASC) is a secret group under the Cookiverment of the <a onclick="showCorrectRightPanel('cookiearth');">Cookiearth</a>.<br>They managed situations about security of the planet, and attack the menace before it's too late.</h2>
+				<h2>They can count of their 8 Cookistraunauts to do this mission, with they Stars; The <a onclick="showCorrectRightPanel('big-5-cookies-narrative');">Big 5</a>.</h2>
+			</div>
+			
+			<div id="big-5-cookies-narrative">
+				<h2><strong><u>Big 5:</u></strong></h2>
+				<h2>The best 5 Cookistraunauts of the <a onclick="showCorrectRightPanel('casc');">CASC</a>.<h2>
+				<h2>But who are they?</h2>
+				
+				<video controls>
+  					<source src="assets\videos\cookies_video_2.mp4" type="video/mp4" />
+				</video>
+
 			</div>
 		</div>
 	</div>
@@ -58,8 +89,11 @@
 <script>
 	var rightPanelsList = [
 		document.getElementById("cookies-narrative"),
-		document.getElementById("meteorite-clicker"),
-		document.getElementById("launch-missile-qte")
+		document.getElementById("cookivers"),
+		document.getElementById("cookiearth"),
+		document.getElementById("big-meteorite-cookies-narrative"),
+		document.getElementById("casc"),
+		document.getElementById("big-5-cookies-narrative")
 	];
 	
 	function hideAllRightPanels() {
@@ -77,5 +111,5 @@
 		console.log(rightPanelId);
 	};
 	
-	showCorrectRightPanel('meteorite-clicker');
+	showCorrectRightPanel('cookies-narrative');
 </script>
